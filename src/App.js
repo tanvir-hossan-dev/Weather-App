@@ -21,7 +21,7 @@ function App() {
       {city && (
         <div>
           <CurrentWeather city={city} apiKey={apiKey} />
-          <ForeCast />
+          <ForeCast city={city} apiKey={apiKey} />
         </div>
       )}
     </div>
