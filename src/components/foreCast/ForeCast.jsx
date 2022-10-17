@@ -1,3 +1,4 @@
+import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import axios from "../../axios";
 
@@ -5,23 +6,19 @@ const ForeCast = ({ city, apiKey }) => {
   const [forecast, setForecast] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(`data/2.5/forecast?q=${city}&appid=${apiKey}&units=imperial`);
-      setForecast(data.list);
+      const { data } = await axios.get(`data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`);
+      setForecast(data.list.slice(0, 7));
     };
     fetchData();
   }, [city, apiKey]);
   console.log(forecast);
   return (
-    <div style={{ display: "flex", width: "100%" }}>
+    <div className="w-full flex justify-between text-white">
       {forecast.map((data) => (
-        <div style={{ width: "100px" }}>
-          <h2>{Math.floor(data?.main?.temp)} ℉</h2>
-          <h3>{data?.name} </h3>
-          <div>
-            <h3>{Math.floor(data?.main?.temp_max)} ℉</h3>
-            <h3>{Math.floor(data?.main?.temp_min)} ℉</h3>
-          </div>
-          <p>{data?.weather[0]?.main}</p>
+        <div>
+          <p>{moment().format()}</p>
+          <h2 className="text-white font-bold text-[48px]">{Math.floor(data?.main?.temp)} ℃</h2>
+          <p className="text-white text-[22px]">{data?.weather[0]?.main}</p>
           {/* <p>{data?.weather[0]?.description}</p> */}
         </div>
       ))}

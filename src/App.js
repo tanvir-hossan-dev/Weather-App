@@ -9,21 +9,37 @@ function App() {
 
   const hanldeSubmit = (e) => {
     e.preventDefault();
-    setCity(search);
-    setSearch("");
+    if (search) {
+      setCity(search);
+      setSearch("");
+    }
   };
   return (
-    <div>
-      <form onSubmit={hanldeSubmit}>
-        <input type="text" onChange={(e) => setSearch(e.target.value)} value={search} />
-        <button type="submit">Search</button>
-      </form>
-      {city && (
-        <div>
-          <CurrentWeather city={city} apiKey={apiKey} />
-          <ForeCast city={city} apiKey={apiKey} />
-        </div>
-      )}
+    <div className=" mx-w-screen-lg mx-32 ">
+      <div className="bg-blue-900 h-screen p-8">
+        <form onSubmit={hanldeSubmit}>
+          <input
+            className="outline-0 py-2 px-4"
+            type="text"
+            placeholder="Search City"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+          <button
+            disabled={!search}
+            className="text-white ml-4 border-2 border-solid border-white py-1 px-3"
+            type="submit"
+          >
+            Search
+          </button>
+        </form>
+        {city && (
+          <div className="mt-8">
+            <CurrentWeather city={city} apiKey={apiKey} />
+            <ForeCast city={city} apiKey={apiKey} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
