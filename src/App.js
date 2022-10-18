@@ -15,7 +15,7 @@ function App() {
     }
   };
   return (
-    <div className=" mx-w-screen-lg mx-32 ">
+    <div className=" mx-w-screen-lg  ">
       <div className="bg-blue-900 h-screen p-8">
         <form onSubmit={hanldeSubmit}>
           <input

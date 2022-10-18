@@ -1,4 +1,3 @@
-import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import axios from "../../axios";
 
@@ -16,10 +15,8 @@ const ForeCast = ({ city, apiKey }) => {
     <div className="w-full flex justify-between text-white">
       {forecast.map((data) => (
         <div>
-          <p>{moment().format()}</p>
           <h2 className="text-white font-bold text-[48px]">{Math.floor(data?.main?.temp)} ℃</h2>
           <p className="text-white text-[22px]">{data?.weather[0]?.main}</p>
-          {/* <p>{data?.weather[0]?.description}</p> */}
         </div>
       ))}
     </div>
